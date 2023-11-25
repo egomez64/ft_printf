@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egomez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 10:10:57 by egomez            #+#    #+#             */
-/*   Updated: 2023/11/25 11:55:31 by egomez           ###   ########.fr       */
+/*   Created: 2023/11/25 10:21:05 by egomez            #+#    #+#             */
+/*   Updated: 2023/11/25 10:22:21 by egomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *arg0, ...)
+int	ft_printnbr(int nb)
 {
-	va_list	args;
-	int		nb_char;
-	int		i;
+	int	i;
+	int	len;
 
-	nb_char = 0;
-	i = 0;
-	va_start(args, arg0);
-	while (arg0[i] != 0)
+	i = 1;
+	len = nb;
+	if (nb == -2147483647 - 1)
 	{
-		if (arg0[i] == '%')
-		{
-			nb_char += ft_converttreatment(arg0[i + 1], args);
-			i++;
-		}
-		else
-		{
-			write(1, &arg0[i], 1);
-			nb_char++;
-		}
+		write(1, "-2147483648", 11);
+		return (11);
+	}
+	if (nb < 0)
+	{
+		nb *= -1;
+		write(1, "-", 1);
 		i++;
 	}
-	va_end(args);
-	return (nb_char);
+	if (nb / 10 != 0)
+		ft_printnbr(nb / 10);
+	ft_printchar(nb % 10 + '0');
+	while (len / 10 != 0)
+	{
+		i++;
+		len /= 10;
+	}
+	return (i);
 }

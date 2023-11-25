@@ -10,18 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
 	int	i;
-	char	*c;
 
-	c = str;
-	i = 0;
-	while (c[i] != 0)
+	if (!str)
 	{
-		write(1, &c[i], 1);
+		write(1, "(null)", 6);
+		return (6);
+	}
+	i = 0;
+	while (str[i] != 0)
+	{
+		write(1, &str[i], 1);
 		i++;
 	}
+	return (i);
 }

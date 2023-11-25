@@ -10,18 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdarg.h>
 
 int	ft_printf(const char *arg0, ...);
-void	ft_converttreatment(char c, va_list arg);
-void	ft_putstr(char *str);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-void	ft_putnbr_hex(unsigned int nbr, char form);
-void	ft_putptr_hex(unsigned long long ptr);
+int	ft_converttreatment(char c, va_list arg);
+int	ft_putstr(char *str);
+int	ft_printchar(char c);
+int	ft_printnbr(int nb);
+int	ft_putnbr_hex(unsigned int nbr, char form, int i);
+int	ft_putptr_hex(unsigned long long ptr, int i);
+int	ft_uputnbr(unsigned int nb);
 
 #endif

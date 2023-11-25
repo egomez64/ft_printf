@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egomez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 10:21:05 by egomez            #+#    #+#             */
-/*   Updated: 2023/11/25 10:22:21 by egomez           ###   ########.fr       */
+/*   Created: 2023/11/25 13:37:12 by egomez            #+#    #+#             */
+/*   Updated: 2023/11/25 13:42:59 by egomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr(int nb)
+int	ft_uputnbr(unsigned int nb)
 {
-	if (nb == -2147483647 - 1)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (nb < 0)
-	{
-		nb *= -1;
-		write(1, "-", 1);
-	}
+	int	i;
+
+	i = 0;
 	if (nb / 10 != 0)
-		ft_putnbr(nb / 10);
-	ft_putchar(nb % 10 + '0');
+		i = ft_uputnbr(nb / 10);
+	i += ft_printchar(nb % 10 + '0');
+	return (i);
 }

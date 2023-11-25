@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_hex(unsigned int nbr, char form)
+int	ft_putnbr_hex(unsigned int nbr, char form, int i)
 {
 	char	*base;
+
 	if (form == 'x')
 		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
 	if (nbr / 16 != 0)
-		ft_putnbr_hex(nbr / 16, form);
-	ft_putchar(base[nbr % 16]);
+		i = ft_putnbr_hex(nbr / 16, form, i);
+	i += ft_printchar(base[nbr % 16]);
+	return (i);
 }

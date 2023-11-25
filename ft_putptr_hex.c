@@ -10,14 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putptr_hex(unsigned long long ptr)
+int	ft_putptr_hex(unsigned long long ptr, int i)
 {
-	char base[16] = "0123456789abcdef";
+	char	base[16];
+
+	base = "0123456789abcdef";
+	if (!ptr)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
 	if (ptr / 16 != 0)
-		ft_putptr_hex(ptr / 16);
+		i = ft_putptr_hex(ptr / 16, i);
 	else
 		write(1, "0x", 2);
-	ft_putchar(base[ptr % 16]);
+	i += ft_printchar(base[ptr % 16]);
+	return (i);
 }
